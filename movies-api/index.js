@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import express from 'express';
 import bodyParser from 'body-parser';
 import moviesRouter from './api/movies';
+import usersRouter from './api/users';
 
 dotenv.config();
 
@@ -30,6 +31,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 app.use('/api/movies', moviesRouter);
 app.use(errHandler);
+app.use('/api/users', usersRouter);
 
 app.listen(port, () => {
   console.info(`Server running at ${port}`);
