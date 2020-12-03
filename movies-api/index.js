@@ -1,9 +1,15 @@
+import {loadUsers} from './seedData'
+import './db';
 import dotenv from 'dotenv';
 import express from 'express';
 import bodyParser from 'body-parser';
 import moviesRouter from './api/movies';
 
 dotenv.config();
+
+if (process.env.SEED_DB) {
+  loadUsers();
+}
 
 const errHandler = (err, req, res, next) => {
   /* if the error in development then send stack trace to display whole error,
