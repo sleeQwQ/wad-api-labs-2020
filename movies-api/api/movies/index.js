@@ -5,7 +5,7 @@ import {
 
 const router = express.Router();
 
-router.get('/', (req, res,next) => {
+router.get('/', (req, res, next) => {
   getMovies()
   .then(movies => res.status(200).send(movies))
   .catch((error) => next(error));
