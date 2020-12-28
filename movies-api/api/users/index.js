@@ -25,12 +25,13 @@ router.post('/', async (req, res, next) => {
         code: 401,
         msg: 'Register failed. Bad password.'
       });
+    } else {
+      await User.create(req.body).catch(next);
+      res.status(201).json({
+        code: 201,
+        msg: 'Successful created new user.',
+      });
     }
-    await User.create(req.body).catch(next);
-    res.status(201).json({
-      code: 201,
-      msg: 'Successful created new user.',
-    });
   } else {
     const user = await User.findByUserName(req.body.username).catch(next);
       if (!user) return res.status(401).json({ code: 401, msg: 'Authentication failed. User not found.' });
